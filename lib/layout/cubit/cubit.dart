@@ -7,11 +7,6 @@ import 'package:englizy_app/modules/admin/admin_community/admin_community_screen
 import 'package:englizy_app/modules/admin/admin_home/admin_home_screen.dart';
 import 'package:englizy_app/modules/admin/admin_pdfs/admin_pdfs_screen.dart';
 import 'package:englizy_app/modules/admin/admin_view_posts/admin_view_posts_screen.dart';
-import 'package:englizy_app/modules/student/pdfs/pdfs_screen.dart';
-import 'package:englizy_app/modules/student/posts/posts_screen.dart';
-import 'package:englizy_app/modules/student/posts_of_admin/posts_of_admin_screen.dart';
-import 'package:englizy_app/modules/student/settings_student/settings_student_screen.dart';
-import 'package:englizy_app/modules/student/student_home/student_home_screen.dart';
 import 'package:englizy_app/shared/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,14 +26,6 @@ class AppCubit extends Cubit<AppStates> {
     AdminHomeScreen(),
     AdminViewPostsScreen(),
     SettingsAdminScreen()
-  ];
-
-  List<Widget> widgetStudent = <Widget>[
-    PostsScreen(),
-    PDFSScreen(),
-    StudentHomeScreen(),
-    PostsOfAdminScreen(),
-    SettingsStudentScreen(),
   ];
 
   List<TabItem> icons() {
@@ -76,20 +63,5 @@ class AppCubit extends Cubit<AppStates> {
   void changeIndex(int newIndex) {
     bottomNavIndex = newIndex;
     emit(ChangeIndexState());
-  }
-
-  Future<void> changeLevelText() async{
-    if(FirebaseAuth.instance.currentUser != null){
-      await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).get().then((value) {
-        FirebaseFirestore.instance
-            .collection("levels")
-            .doc(value["level"])
-            .get()
-            .then((value) {
-          levelText = value["name"];
-          emit(GetLevelTextState());
-        });
-      });
-    }
   }
 }

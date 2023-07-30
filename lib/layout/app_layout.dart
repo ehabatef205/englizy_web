@@ -34,7 +34,7 @@ class AppScreen extends StatelessWidget {
                 cubit.changeIndex(index);
               },
             ),
-            body: userModel!.admin? cubit.widgetAdmin[cubit.bottomNavIndex] : cubit.widgetStudent[cubit.bottomNavIndex],
+            body: cubit.widgetAdmin[cubit.bottomNavIndex],
           ),
         );
       },

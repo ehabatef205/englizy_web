@@ -27,15 +27,17 @@ class _SplashScreenState extends State<SplashScreen> {
             .get()
             .then((value) {
           userModel = UserModel.fromjson(value.data()!);
-          print(userModel!.level);
         }).whenComplete(() {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AppScreen()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AppScreen()));
         });
-      }else{
-        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -48,10 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
             width: size.width,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/englizy.jpg"),
-                    fit: BoxFit.fill
-                )
-            ),
+                    image: AssetImage("assets/englizy.jpg"), fit: BoxFit.fill)),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
